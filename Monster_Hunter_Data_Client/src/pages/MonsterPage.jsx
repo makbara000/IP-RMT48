@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react'
 import { monsterHunterWorld } from '../utils/axios'
 import Swal from 'sweetalert2'
-import { CardWeapons } from '../components/CardSlide'
 import { useParams } from 'react-router-dom'
+import { CardMonsters } from '../components/CardSlide'
 
 export default function WeaponPage(){
     const {id} = useParams()
-    const [weapons, setWeapons] = useState([])
+    const [monsters, setMonsters] = useState([])
 
-    const fetchWeapons = async() =>{
+    const fetchMonsters = async() =>{
         try {
-            const {data} = await monsterHunterWorld.get("/weapons")
+            const {data} = await monsterHunterWorld.get("/monsters")
             console.log(data)
-            setWeapons(data)
+            setMonsters(data)
         } catch (error) {
             console.log(error.response.data.message)
             Swal.fire({
@@ -24,15 +24,15 @@ export default function WeaponPage(){
         }
     }
     useEffect(() => {
-        fetchWeapons()
+        fetchMonsters()
       }, [])
 
     return (
         <>
         <div className='container-fluid text-center mx-auto p-0'>
             <div className='container w-75 d-flex flex-wrap'>
-                {weapons.map(e => {
-                    return <CardWeapons key={e.id} items={e}/>
+                {monsters.map(e => {
+                    return <CardMonsters key={e.id} items={e}/>
                 })}
             </div>
         </div>
