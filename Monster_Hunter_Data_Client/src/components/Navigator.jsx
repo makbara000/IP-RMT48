@@ -13,22 +13,22 @@ import { Link } from "react-router-dom"
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item">
-        <a className="nav-link" href="/monsters">Monsters</a>
+        <Link className="nav-link" to="/monsters">Monsters</Link>
       </li>
       <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Equipments
-        </a>
+        </Link>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="/items">Items</a>
-          <a className="dropdown-item" href="/weapons">Weapons</a>
-          <a className="dropdown-item" href="/armors">Armors</a>
+          <Link className="dropdown-item" to={"/items"}>Items</Link>
+          <Link className="dropdown-item" to={"/weapons"}>Weapons</Link>
+          <Link className="dropdown-item" to={"/armors"}>Armors</Link>
           <div className="dropdown-divider"></div>
-          <a className="dropdown-item" href="/market">Market Place</a>
+          <Link className="dropdown-item" to={"/market"}>Market Place</Link>
         </div>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="/about">About</a>
+        <Link className="nav-link" to="/about">About</Link>
       </li>
     </ul>
     <form className="form-inline my-2 my-lg-0">

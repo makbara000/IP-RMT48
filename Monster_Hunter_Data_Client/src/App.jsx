@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
-// import './App.css'
+import './App.css'
 import HomePage from "./pages/HomePage"
 import AboutWikiPage from "./pages/AboutWikiPage"
 import Navbar from "./components/Navigator"
 import ArmorPage from "./pages/ArmorPage"
+import WeaponPage from "./pages/WeaponPage"
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
     <>
     <Navbar/>,
     <ArmorPage/>
+    </>
+  },
+  {
+    path: "/weapons",
+    element: 
+    <>
+    <Navbar/>,
+    <WeaponPage/>
     </>
   },
 ])
