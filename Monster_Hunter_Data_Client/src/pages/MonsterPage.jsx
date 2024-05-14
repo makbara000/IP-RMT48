@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import { useParams } from 'react-router-dom'
 import { CardMonsters } from '../components/CardSlide'
 
-export default function WeaponPage(){
+export default function MonsterPage(){
     const {id} = useParams()
     const [monsters, setMonsters] = useState([])
 
@@ -32,7 +32,7 @@ export default function WeaponPage(){
         <div className='container-fluid text-center mx-auto p-0'>
             <div className='container w-75 d-flex flex-wrap'>
                 {monsters.map(e => {
-                    return <CardMonsters key={e.id} items={e}/>
+                    return <CardMonsters key={e.id} monsters={e}/>
                 })}
             </div>
         </div>

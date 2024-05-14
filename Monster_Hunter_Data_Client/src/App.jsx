@@ -6,6 +6,7 @@ import AboutWikiPage from "./pages/AboutWikiPage"
 import Navbar from "./components/Navigator"
 import ArmorPage from "./pages/ArmorPage"
 import WeaponPage from "./pages/WeaponPage"
+import MonsterPage from "./pages/MonsterPage"
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
     <>
     <Navbar/>,
     <WeaponPage/>
+    </>
+  },
+  {
+    path: "/monsters",
+    element: 
+    <>
+    <Navbar/>,
+    <MonsterPage/>
     </>
   },
 ])
