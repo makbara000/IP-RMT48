@@ -5,9 +5,8 @@ import { monsterHunterWorld } from "../utils/axios"
 export default function WeaponDetailPage(){
     const [data, setData] = useState([])
     const [attackData, setAttackData] = useState([])
-    const [attributekData, setAttributekData] = useState([])
-    const [durabilityData, setDurabilityData] = useState([])
-    const [elementData, setElementData] = useState([])
+    const [attributeData, setAttributeData] = useState([])
+    const [assetsData, setAssetsData] = useState([])
     let {id} = useParams()
     console.log(id)
 
@@ -17,6 +16,7 @@ export default function WeaponDetailPage(){
             console.log(data)
             setData(data)
             setAttackData(data.attack)
+            setAssetsData(data.assets)
         } catch (error) {
             console.log(error.response.data.message)
             Swal.fire({
@@ -32,11 +32,33 @@ export default function WeaponDetailPage(){
     }, [])
     return (
         <>
-        <h1>{data.type}: {data.name}</h1>
-        <p><b>Damage Type:</b> {data.damageType}</p>
-        <p><b>Rarity:</b> {data.rarity}</p>
-        <p><b>Attack:</b> {attackData.display}</p>
-        <p><b>Price:</b> {attackData.display * data.rarity * 1000}z </p>
+        <div className="card container w-75 d-flex flex-wrap">
+        <img 
+            src={assetsData.image} 
+            alt={data.name} />
+        <h1 className="d-flex justify-content-center">{data.type}: {data.name}</h1>
+        <div className="d-flex justify-content-center">
+            <p><b>Damage Type:</b> {data.damageType}</p>
+        </div>
+        <div className="d-flex justify-content-center">
+            <p><b>Rarity:</b> {data.rarity}</p>
+            
+        </div>
+        <div className="d-flex justify-content-center">
+            <p><b>Attack:</b> {attackData.display}</p>
+            
+        </div>
+        <div className="d-flex justify-content-center">
+            <p><b>Attribute:</b> {attributeData.type}</p>
+            
+        </div>
+        <div className="d-flex justify-content-center">
+            <p><b>Price:</b> {attackData.display * data.rarity * 1000}z </p>
+            
+        </div>
+            <button className="btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
+
+        </div>
         </>
     )
 }
