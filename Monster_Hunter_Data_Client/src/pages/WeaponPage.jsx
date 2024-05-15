@@ -29,7 +29,7 @@ export default function WeaponPage(){
 
     return (
         <>
-        <div className='container-fluid text-center mx-auto p-0'>
+        <div >
             <div className='container w-75 d-flex flex-wrap'>
                 {weapons.map(e => {
                     return <CardWeapons key={e.id} items={e}/>

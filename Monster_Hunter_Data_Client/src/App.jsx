@@ -7,6 +7,9 @@ import Navbar from "./components/Navigator"
 import ArmorPage from "./pages/ArmorPage"
 import WeaponPage from "./pages/WeaponPage"
 import MonsterPage from "./pages/MonsterPage"
+import ItemPage from "./pages/ItemPage"
+import MarketPlace from "./pages/MarketPlacePage"
+import EventPage from "./pages/EventPage"
 
 const router = createBrowserRouter([
   {
@@ -47,6 +50,30 @@ const router = createBrowserRouter([
     <>
     <Navbar/>,
     <MonsterPage/>
+    </>
+  },
+  {
+    path: "/items",
+    element: 
+    <>
+    <Navbar/>,
+    <ItemPage/>
+    </>
+  },
+  {
+    path: "/market",
+    element: 
+    <>
+    <Navbar/>,
+    <MarketPlace/>
+    </>
+  },
+  {
+    path: "/events",
+    element: 
+    <>
+    <Navbar/>,
+    <EventPage/>
     </>
   },
 ])

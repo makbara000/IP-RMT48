@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
 import { monsterHunterWorld } from '../utils/axios'
 import Swal from 'sweetalert2'
-import CardArmors from '../components/CardSlide'
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { CardItems} from '../components/CardSlide'
+import { useParams } from 'react-router-dom'
 
-export default function ArmorPage(){
-    const [armors, setArmors] = useState([])
+export default function ItemPage(){
+    const {id} = useParams()
+    const [items, setItems] = useState([])
 
-    const fetchArmors = async() =>{
+    const fetchItems = async() =>{
         try {
-            const {data} = await monsterHunterWorld.get("/armor/sets")
+            const {data} = await monsterHunterWorld.get("/items")
             console.log(data)
-            setArmors(data)
+            setItems(data)
         } catch (error) {
             console.log(error.response.data.message)
             Swal.fire({
@@ -22,17 +23,16 @@ export default function ArmorPage(){
             })
         }
     }
-    
     useEffect(() => {
-        fetchArmors()
+        fetchItems()
       }, [])
 
     return (
         <>
         <div className='container-fluid text-center mx-auto p-0'>
             <div className='container w-75 d-flex flex-wrap'>
-                {armors.map(e => {
-                    return <CardArmors key={e.id} items={e}/>
+                {items.map(e => {
+                    return <CardItems key={e.id} items={e}/>
                 })}
             </div>
         </div>
