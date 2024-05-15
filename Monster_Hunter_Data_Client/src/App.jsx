@@ -10,6 +10,7 @@ import MonsterPage from "./pages/MonsterPage"
 import ItemPage from "./pages/ItemPage"
 import MarketPlace from "./pages/MarketPlacePage"
 import EventPage from "./pages/EventPage"
+import WeaponDetailPage from "./pages/WeaponDetailPage"
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
     <>
     <Navbar/>,
     <WeaponPage/>
+    </>
+  },
+  {
+    path: "/weapons/:type/:id",
+    element: 
+    <>
+    <Navbar/>,
+    <WeaponDetailPage/>
     </>
   },
   {

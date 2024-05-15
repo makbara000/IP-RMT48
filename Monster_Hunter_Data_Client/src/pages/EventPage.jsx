@@ -61,7 +61,7 @@ export default function EventPage(){
                                 <td>{e.startTimestamp.split('T')[0]}</td>
                                 <td>{e.endTimestamp.split('T')[0]}</td>
                                 <td>
-                                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onClick={(el) =>fetchEventsDetail(e.id)}>
+                                    <button type="button" className="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#exampleModalCenter" onClick={(el) =>fetchEventsDetail(e.id)}>
                                     Details
                                     </button>
                                     <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -86,7 +86,7 @@ export default function EventPage(){
                                             {eventsDetail.successConditions}
                                         </div>
                                         <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" className="btn btn-outline-danger my-2 my-sm-0" data-dismiss="modal">Close</button>
                                         </div>
                                         </div>
                                     </div>

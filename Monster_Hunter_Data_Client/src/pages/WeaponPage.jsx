@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom'
 
 export default function WeaponPage(){
     const [weapons, setWeapons] = useState([])
-    const [weaponsId, setWeaponsId] = useState([])
 
     const fetchWeapons = async() =>{
         try {
@@ -25,18 +24,6 @@ export default function WeaponPage(){
     }
     useEffect(() => {
         fetchWeapons()
-      }, [])
-    const fetchWeaponsId = async(id) =>{
-        try {
-            const {data} = await monsterHunterWorld.get(`/weapons/${id}`)
-            console.log(data)
-            setWeaponsId(data)
-        } catch (error) {
-            console.log(error.response.data.message)
-        }
-    }
-    useEffect(() => {
-        fetchWeaponsId()
       }, [])
 
     return (
