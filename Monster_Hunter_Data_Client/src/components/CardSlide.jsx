@@ -41,7 +41,7 @@ export function CardWeapons({items}) {
       };
   return (
     <>
-    <Link className="text-dark" data-toggle="modal" data-target="#exampleModalCenter" >
+    <Link className="text-dark" to={`/weapons/${items.type}/${items.id}`} data-toggle="modal" data-target="#exampleModalCenter" >
       <div className="items container-fluid text-center mx-auto p-0">
         <div className="card items_card2">
           <div id="news" className="card-body">
@@ -51,37 +51,6 @@ export function CardWeapons({items}) {
             <span className={"d-flex align-items-center badge badge-pill " + genreRankColors[items.rarity]}>Rarity: {items.rarity}</span>
             <span className={"d-flex align-items-center badge badge-pill " + genreRankColors[items.rarity]}>Type: {items.type}</span>
           </div><br />
-        </div>
-      </div>
-      <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div className="modal-dialog modal-dialog-centered" role="document" >
-          <div className="modal-content">
-            <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLongTitle">{items.name}</h5>
-                   <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                   </button>
-                <span aria-hidden="true">&times;</span>
-            </div>
-                <div className="modal-body">
-                    <h5>Damage Type</h5>
-                        {items.damageType}
-                </div>
-                    <div className="modal-body">
-                    <h5>Attack</h5>
-                        <p>
-                            Display: {items.attack.display}
-                        </p>
-                        <p>
-                            Raw: {items.attack.raw}
-                        </p>
-                    </div>
-                    <div className="modal-footer">
-                        <Link to={`/weapons/${items.type}/${items.id}`}>
-                        <button type="button" className="btn btn-outline-success my-2 my-sm-0" data-dismiss="modal">Detail</button>
-                        </Link>
-                        <button type="button" className="btn btn-outline-danger my-2 my-sm-0" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
         </div>
         </div>
     </Link>
