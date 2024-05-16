@@ -3,9 +3,12 @@ import { monsterHunterWorld } from '../utils/axios'
 import Swal from 'sweetalert2'
 import { CardWeapons } from '../components/CardSlide'
 import { useParams } from 'react-router-dom'
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function WeaponPage(){
     const [weapons, setWeapons] = useState([])
+    const [hasMore, setHasMore] = useState(true)
+
 
     const fetchWeapons = async() =>{
         try {
@@ -28,13 +31,19 @@ export default function WeaponPage(){
 
     return (
         <>
-        <div >
+        
             <div className='container w-75 d-flex flex-wrap'>
                 {weapons.map(e => {
                     return <CardWeapons key={e.id} items={e}/>
                 })}
+                <InfiniteScroll 
+                dataLength={weapons.length}
+                next={fetchWeapons}
+                hasMore={hasMore}
+                loader={<p>Hold on...</p>}
+                />
             </div>
-        </div>
+
         </>
     )
 }

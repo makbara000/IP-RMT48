@@ -32,11 +32,13 @@ export default function WeaponDetailPage(){
     }, [])
     return (
         <>
-        <div className="card container w-75 d-flex flex-wrap">
+        <div className="card container w-25 d-flex">
         <img 
             src={assetsData.image} 
             alt={data.name} />
-        <h1 className="d-flex justify-content-center">{data.type}: {data.name}</h1>
+        <div className="d-flex justify-content-center text-align-center">
+            <h4>{data.type}: {data.name}</h4>
+        </div>
         <div className="d-flex justify-content-center">
             <p><b>Damage Type:</b> {data.damageType}</p>
         </div>
@@ -56,8 +58,7 @@ export default function WeaponDetailPage(){
             <p><b>Price:</b> {attackData.display * data.rarity * 1000}z </p>
             
         </div>
-            <button className="btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button>
-
+            <button className="btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button><br />
         </div>
         </>
     )

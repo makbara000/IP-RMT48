@@ -11,6 +11,8 @@ import ItemPage from "./pages/ItemPage"
 import MarketPlace from "./pages/MarketPlacePage"
 import EventPage from "./pages/EventPage"
 import WeaponDetailPage from "./pages/WeaponDetailPage"
+import Login from "./pages/LoginPage"
+import Register from "./pages/RegisterPage"
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,20 @@ const router = createBrowserRouter([
     <>
     <Navbar/>,
     <HomePage/>
+    </>
+  },
+  {
+    path: "/login",
+    element: 
+    <>
+    <Login/>
+    </>
+  },
+  {
+    path: "/register",
+    element: 
+    <>
+    <Register/>
     </>
   },
   {
