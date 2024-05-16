@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, Outlet, RouterProvider, redirect } from "react-router-dom"
 
 import './App.css'
 import HomePage from "./pages/HomePage"
@@ -16,90 +16,112 @@ import Register from "./pages/RegisterPage"
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: 
-    <>
-    <Navbar/>,
-    <HomePage/>
-    </>
-  },
-  {
     path: "/login",
     element: 
     <>
     <Login/>
-    </>
+    </>,
+    loader: () =>{
+      let token = localStorage.getItem("access_token")
+      if(token){
+        return redirect("/")
+      }
+      return null
+    }
   },
   {
     path: "/register",
     element: 
     <>
     <Register/>
-    </>
+    </>,
+    loader: () =>{
+      let token = localStorage.getItem("access_token")
+        if(token){
+          return redirect("/")
+        }
+        return null
+    }
   },
   {
-    path: "/about",
+    path: "/",
     element: 
     <>
     <Navbar/>,
-    <AboutWikiPage/>
-    </>
-  },
-  {
-    path: "/armors",
-    element: 
-    <>
-    <Navbar/>,
-    <ArmorPage/>
-    </>
-  },
-  {
-    path: "/weapons",
-    element: 
-    <>
-    <Navbar/>,
-    <WeaponPage/>
-    </>
-  },
-  {
-    path: "/weapons/:type/:id",
-    element: 
-    <>
-    <Navbar/>,
-    <WeaponDetailPage/>
-    </>
-  },
-  {
-    path: "/monsters",
-    element: 
-    <>
-    <Navbar/>,
-    <MonsterPage/>
-    </>
-  },
-  {
-    path: "/items",
-    element: 
-    <>
-    <Navbar/>,
-    <ItemPage/>
-    </>
-  },
-  {
-    path: "/market",
-    element: 
-    <>
-    <Navbar/>,
-    <MarketPlace/>
-    </>
-  },
-  {
-    path: "/events",
-    element: 
-    <>
-    <Navbar/>,
-    <EventPage/>
-    </>
+    <Outlet/>
+    </>,
+    loader: () =>{
+      let token = localStorage.getItem("access_token")
+      if(!token){
+        return redirect("/login")
+      }
+      return null
+    },
+    children: [
+      {
+        path: "/",
+        element: 
+        <>
+        <HomePage/>
+        </>
+      },
+      {
+        path: "/about",
+        element: 
+        <>
+        <AboutWikiPage/>
+        </>
+      },
+      {
+        path: "/armors",
+        element: 
+        <>
+        <ArmorPage/>
+        </>
+      },
+      {
+        path: "/weapons",
+        element: 
+        <>
+        <WeaponPage/>
+        </>
+      },
+      {
+        path: "/weapons/:type/:id",
+        element: 
+        <>
+        <WeaponDetailPage/>
+        </>
+      },
+      {
+        path: "/monsters",
+        element: 
+        <>
+        <MonsterPage/>
+        </>
+      },
+      {
+        path: "/items",
+        element: 
+        <>
+        <ItemPage/>
+        </>
+      },
+      {
+        path: "/market",
+        element: 
+        <>
+        <MarketPlace/>
+        </>
+      },
+      {
+        path: "/events",
+        element: 
+        <>
+        <EventPage/>
+        </>
+      },
+    ]
   },
 ])
 

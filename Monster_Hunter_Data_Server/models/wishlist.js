@@ -14,10 +14,21 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Wishlist.init({
-    item: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    price: DataTypes.INTEGER,
-    isPaid: DataTypes.BOOLEAN,
+    OrderId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate:{
+        notNull:{
+          msg:"OrderId is required"
+        },
+        notEmpty:{
+          msg:"OrderId is required"
+        }
+      }
+    },
+    price: DataTypes.STRING,
+    status: DataTypes.STRING,
+    paidDate: DataTypes.DATE,
     UserId: DataTypes.INTEGER
   }, {
     sequelize,

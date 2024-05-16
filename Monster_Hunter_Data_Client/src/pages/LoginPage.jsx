@@ -38,7 +38,8 @@ export default function Login(){
             const {data} = await serverSide.post("/login/google", {
                 tokenGoogle
               })
-              localStorage.setItem("access_token", data.token)
+              localStorage.setItem("access_token", tokenGoogle)
+              navigate("/")
         } catch (error) {
             Swal.fire({
                 title: 'Error!',

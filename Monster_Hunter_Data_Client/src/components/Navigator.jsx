@@ -1,7 +1,15 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
-
- export default function Navbar(){
+export default function Navbar(){
+  //  const navigate = useNavigate();
+   
+  //  const handleLogout = () => {
+  //    localStorage.removeItem("access_token");
+  //    navigate("/login");
+  //  };
+  //  const isLogin = useMemo(() => {
+  //    return !!localStorage.getItem("access_token");
+  //  }, []);
     return(
         <>
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -42,6 +50,11 @@ import { Link } from "react-router-dom"
     </form>
       <div>
         <Link className="nav-link" to={"/login"}>Login</Link>
+      </div>
+      <div>
+        {/* {isLogin && (
+          <Link className="nav-link" to={"/login"} onClick={handleLogout}>Logout</Link>
+        )} */}
       </div>
   </div>
 </nav>

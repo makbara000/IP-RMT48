@@ -12,7 +12,7 @@ export default function WeaponPage(){
 
     const fetchWeapons = async() =>{
         try {
-            const {data} = await monsterHunterWorld.get("/weapons")
+            const {data} = await monsterHunterWorld.get("/weapons?offset=10&limit=12")
             console.log(data)
             setWeapons(data)
         } catch (error) {
@@ -31,19 +31,20 @@ export default function WeaponPage(){
 
     return (
         <>
-        
-            <div className='container w-75 d-flex flex-wrap'>
-                {weapons.map(e => {
-                    return <CardWeapons key={e.id} items={e}/>
-                })}
-                <InfiniteScroll 
+        <div >
+            <InfiniteScroll 
                 dataLength={weapons.length}
                 next={fetchWeapons}
                 hasMore={hasMore}
                 loader={<p>Hold on...</p>}
-                />
-            </div>
-
+                >
+                    <div className='container w-75 d-flex flex-wrap'>
+                        {weapons.map(e => {
+                            return <CardWeapons key={e.id} items={e}/>
+                        })}
+                    </div>
+            </InfiniteScroll>
+        </div>
         </>
     )
 }

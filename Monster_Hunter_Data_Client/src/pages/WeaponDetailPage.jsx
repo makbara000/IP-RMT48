@@ -55,7 +55,7 @@ export default function WeaponDetailPage(){
             
         </div>
         <div className="d-flex justify-content-center">
-            <p><b>Price:</b> {attackData.display * data.rarity * 1000}z </p>
+            <p><b>Price:</b> {attackData.display * data.rarity * 100}z </p>
             
         </div>
             <button className="btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button><br />

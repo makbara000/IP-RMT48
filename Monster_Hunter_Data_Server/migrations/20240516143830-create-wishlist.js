@@ -9,17 +9,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      item: {
+      OrderId: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      price: {
         type: Sequelize.STRING
       },
-      price: {
-        type: Sequelize.INTEGER
+      status: {
+        type: Sequelize.STRING,
+        defaultValue: "pending"
       },
-      price: {
-        type: Sequelize.INTEGER
-      },
-      isPaid: {
-        type: Sequelize.BOOLEAN
+      paidDate: {
+        type: Sequelize.DATE
       },
       UserId: {
         type: Sequelize.INTEGER,
