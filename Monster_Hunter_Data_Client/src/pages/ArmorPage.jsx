@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { monsterHunterWorld } from '../utils/axios'
+import { monsterHunterWorld, serverSide } from '../utils/axios'
 import Swal from 'sweetalert2'
 import CardArmors from '../components/CardSlide'
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -9,7 +9,12 @@ export default function ArmorPage(){
 
     const fetchArmors = async() =>{
         try {
-            const {data} = await monsterHunterWorld.get("/armor/sets")
+            const {data} = await serverSide.get("/armors",
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+                    }
+            } )
             console.log(data)
             setArmors(data)
         } catch (error) {

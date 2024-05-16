@@ -52,7 +52,7 @@ export default function Navbar(){
         <Link className="nav-link" to={"/login"}>Login</Link>
       </div> */}
       <div>
-          <Link className="nav-link" to={"/login"} onClick={handleLogout}>Logout</Link>
+          <Link className="nav-link text-danger" to={"/login"} onClick={handleLogout}>Logout</Link>
       </div>
   </div>
 </nav>

@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 
 export default function WeaponDetailPage(){
     const [data, setData] = useState([])
+    const [transaction, setTransaction] = useState([])
     const [attackData, setAttackData] = useState([])
     const [attributeData, setAttributeData] = useState([])
     const [assetsData, setAssetsData] = useState([])
@@ -19,8 +20,16 @@ export default function WeaponDetailPage(){
                     Authorization: `Bearer ${localStorage.getItem("access_token")}`
                     }
             })
+            const transactionData = await serverSide.get("/generate-midtrans-token",
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+                    }
+            })
             console.log(data)
+            console.log(transactionData.data)
             setData(data)
+            setTransaction(transactionData.data)
             setAttackData(data.attack)
             setAssetsData(data.assets)
         } catch (error) {
@@ -34,7 +43,7 @@ export default function WeaponDetailPage(){
         }
     }
     const handleOnBuy = () =>{
-        window.snap.pay('ba46b292-798d-43dc-a5bc-323f80306426', {
+        window.snap.pay(`${transaction.token}`, {
             onSuccess: function(result){
               /* You may add your own implementation here */
               alert("payment success!"); console.log(result);
