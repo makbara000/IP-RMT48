@@ -6,7 +6,7 @@ class Controller {
         // const data = await Wishlist.findAll()
         // console.log(req.user)
         const data = await User.findByPk(req.user.id)
-        const {price} = req.body
+        // const {price} = req.body
         // console.log(data)
         try {
             let snap = new midtransClient.Snap({
@@ -15,10 +15,13 @@ class Controller {
                 serverKey : process.env.MIDTRANS_SERVER_KEY,
             });
 
+            const OrderId = Math.floor(100000 + Math.random() * 900000).toString()
+            const price = 10000
+
             let parameter = {
                 transaction_details: {
-                    order_id: `ORDER-${Math.floor(100000 + Math.random() * 900000)}-ID`,
-                    gross_amount: 10000
+                    order_id: OrderId,
+                    gross_amount: price
                 },
                 credit_card:{
                     secure : true
@@ -28,7 +31,14 @@ class Controller {
                 }
             };
             const midtransToken = await snap.createTransaction(parameter)
-            console.log(midtransToken)
+            
+            await Wishlist.create({
+                OrderId,
+                price,
+                UserId: req.user.id,
+                transactionToken: midtransToken.token
+            })
+
             res.status(201).json(midtransToken)
         } catch (error) {
             console.log(error)

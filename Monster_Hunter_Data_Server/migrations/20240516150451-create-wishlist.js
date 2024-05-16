@@ -10,15 +10,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       OrderId: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       price: {
         type: Sequelize.STRING
       },
       status: {
-        type: Sequelize.STRING,
-        defaultValue: "pending"
+        type: Sequelize.STRING
       },
       paidDate: {
         type: Sequelize.DATE
@@ -30,7 +28,11 @@ module.exports = {
             tableName: 'Users',
             key: 'id'
           }
-        } 
+        }
+      },
+      transactionToken: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
