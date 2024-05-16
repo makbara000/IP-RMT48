@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom"
 export default function Navbar(){
   //  const navigate = useNavigate();
    
-  //  const handleLogout = () => {
-  //    localStorage.removeItem("access_token");
-  //    navigate("/login");
-  //  };
+   const handleLogout = () => {
+     localStorage.removeItem("access_token");
+     navigate("/login");
+   };
   //  const isLogin = useMemo(() => {
   //    return !!localStorage.getItem("access_token");
   //  }, []);
@@ -48,13 +48,11 @@ export default function Navbar(){
       <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </div>
     </form>
-      <div>
+      {/* <div>
         <Link className="nav-link" to={"/login"}>Login</Link>
-      </div>
+      </div> */}
       <div>
-        {/* {isLogin && (
           <Link className="nav-link" to={"/login"} onClick={handleLogout}>Logout</Link>
-        )} */}
       </div>
   </div>
 </nav>

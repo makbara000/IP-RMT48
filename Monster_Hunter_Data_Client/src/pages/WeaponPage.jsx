@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { monsterHunterWorld } from '../utils/axios'
+import { monsterHunterWorld, serverSide } from '../utils/axios'
 import Swal from 'sweetalert2'
 import { CardWeapons } from '../components/CardSlide'
 import { useParams } from 'react-router-dom'
@@ -12,7 +12,12 @@ export default function WeaponPage(){
 
     const fetchWeapons = async() =>{
         try {
-            const {data} = await monsterHunterWorld.get("/weapons?offset=10&limit=12")
+            const {data} = await serverSide.get("/weapons?offset=10&limit=12",
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+                    }
+            })
             console.log(data)
             setWeapons(data)
         } catch (error) {

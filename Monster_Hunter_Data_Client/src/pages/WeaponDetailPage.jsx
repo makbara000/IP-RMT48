@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from 'react'
-import { monsterHunterWorld } from "../utils/axios"
+import { monsterHunterWorld, serverSide } from "../utils/axios"
+import Swal from 'sweetalert2'
 
 export default function WeaponDetailPage(){
     const [data, setData] = useState([])
@@ -12,7 +13,12 @@ export default function WeaponDetailPage(){
 
     const fetchData = async() =>{
         try {
-            const {data} = await monsterHunterWorld.get("/weapons/" + id)
+            const {data} = await serverSide.get("/weapons/" + id,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+                    }
+            })
             console.log(data)
             setData(data)
             setAttackData(data.attack)
@@ -26,6 +32,26 @@ export default function WeaponDetailPage(){
                 confirmButtonText: 'back'
             })
         }
+    }
+    const handleOnBuy = () =>{
+        window.snap.pay('ba46b292-798d-43dc-a5bc-323f80306426', {
+            onSuccess: function(result){
+              /* You may add your own implementation here */
+              alert("payment success!"); console.log(result);
+            },
+            onPending: function(result){
+              /* You may add your own implementation here */
+              alert("wating your payment!"); console.log(result);
+            },
+            onError: function(result){
+              /* You may add your own implementation here */
+              alert("payment failed!"); console.log(result);
+            },
+            onClose: function(){
+              /* You may add your own implementation here */
+              alert('you closed the popup without finishing the payment');
+            }
+          })
     }
     useEffect(() =>{
         fetchData()
@@ -58,7 +84,7 @@ export default function WeaponDetailPage(){
             <p><b>Price:</b> {attackData.display * data.rarity * 100}z </p>
             
         </div>
-            <button className="btn btn-outline-success my-2 my-sm-0">Add to Wishlist</button><br />
+            <button onClick={handleOnBuy} className="btn btn-outline-success my-2 my-sm-0">Buy Item</button><br />
         </div>
         </>
     )
