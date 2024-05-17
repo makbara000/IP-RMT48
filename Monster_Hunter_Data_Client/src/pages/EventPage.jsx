@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { monsterHunterWorld } from '../utils/axios'
 import Swal from 'sweetalert2'
-import { Link } from "react-router-dom"
 
 export default function EventPage(){
     const [events, setEvents] = useState([])

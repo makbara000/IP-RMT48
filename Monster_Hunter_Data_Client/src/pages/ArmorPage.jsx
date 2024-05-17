@@ -1,45 +1,38 @@
-import { useEffect, useState } from 'react'
-import { monsterHunterWorld, serverSide } from '../utils/axios'
-import Swal from 'sweetalert2'
+import { useEffect } from 'react'
 import CardArmors from '../components/CardSlide'
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchArmors } from '../features/data/armorData'
 
 export default function ArmorPage(){
-    const [armors, setArmors] = useState([])
+    const dispatch = useDispatch();
+    const { list, hasMore, loading } = useSelector((state) => state.armors);
 
-    const fetchArmors = async() =>{
-        try {
-            const {data} = await serverSide.get("/armors",
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
-                    }
-            } )
-            console.log(data)
-            setArmors(data)
-        } catch (error) {
-            console.log(error.response.data.message)
-            Swal.fire({
-              title: 'Error!',
-              text: error.response.data.message,
-              icon: 'error',
-              confirmButtonText: 'back'
-            })
-        }
-    }
-    
     useEffect(() => {
-        fetchArmors()
-      }, [])
+        dispatch(fetchArmors());
+      }, [dispatch]);
+    
+      const fetchMoreArmors = () => {
+        if (!loading && hasMore) {
+          dispatch(fetchArmors());
+        }
+      };
 
     return (
         <>
-        <div className='container-fluid text-center mx-auto p-0'>
-            <div className='container w-75 d-flex flex-wrap'>
-                {armors.map(e => {
+        <h1 className="d-flex justify-content-center">Armors</h1>
+        <div>
+          <InfiniteScroll
+            dataLength={list.length}
+            next={fetchMoreArmors}
+            hasMore={hasMore}
+            height={1000}
+            className='container w-75 d-flex flex-wrap'
+          >
+                {list.map(e => {
                     return <CardArmors key={e.id} items={e}/>
                 })}
-            </div>
+          </InfiniteScroll>
         </div>
         </>
     )

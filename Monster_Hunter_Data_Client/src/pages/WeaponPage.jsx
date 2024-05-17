@@ -1,5 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
-import Swal from 'sweetalert2'
+import { useEffect } from 'react'
 import { CardWeapons } from '../components/CardSlide'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch, useSelector } from 'react-redux'

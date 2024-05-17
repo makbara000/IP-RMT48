@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node --watch bin/www"
+    "start": "nodemon bin/www"
   },
   "keywords": [],
   "author": "",
