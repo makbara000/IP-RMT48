@@ -16,7 +16,7 @@ class Controller {
             });
 
             const OrderId = Math.floor(100000 + Math.random() * 900000).toString()
-            const price = 10000
+            const price = Number(req.query.price)
 
             let parameter = {
                 transaction_details: {

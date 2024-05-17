@@ -20,7 +20,7 @@ export default function WeaponDetailPage(){
                     Authorization: `Bearer ${localStorage.getItem("access_token")}`
                     }
             })
-            const transactionData = await serverSide.get("/generate-midtrans-token",
+            const transactionData = await serverSide.get(`/generate-midtrans-token?price=${data.attack.display * data.rarity * 100}`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("access_token")}`
@@ -48,18 +48,6 @@ export default function WeaponDetailPage(){
               /* You may add your own implementation here */
               alert("payment success!"); console.log(result);
             },
-            onPending: function(result){
-              /* You may add your own implementation here */
-              alert("wating your payment!"); console.log(result);
-            },
-            onError: function(result){
-              /* You may add your own implementation here */
-              alert("payment failed!"); console.log(result);
-            },
-            onClose: function(){
-              /* You may add your own implementation here */
-              alert('you closed the popup without finishing the payment');
-            }
           })
     }
     useEffect(() =>{
